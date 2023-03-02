@@ -14,5 +14,5 @@ public class StudentResponseModel {
     private String studentName;
     private String studentAge;
     private String studentEmail;
-    private String institutionName;
+    private String studentSchool;
 }

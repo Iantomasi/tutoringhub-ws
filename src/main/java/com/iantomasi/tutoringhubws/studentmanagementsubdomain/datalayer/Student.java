@@ -9,7 +9,6 @@ import lombok.Data;
 public class Student {
 
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,16 +20,16 @@ public class Student {
     private String studentName;
     private String studentAge;
     private String studentEmail;
-    private String institutionName;
+    private String studentSchool;
 
 
     Student() { this.studentIdentifier = new StudentIdentifier(); }
 
-    public Student(String studentName, String studentAge, String studentEmail, String institutionName) {
+    public Student(String studentName, String studentAge, String studentEmail, String studentSchool) {
         this.studentIdentifier = new StudentIdentifier();
         this.studentName = studentName;
         this.studentAge = studentAge;
         this.studentEmail = studentEmail;
-        this.institutionName = institutionName;
+        this.studentSchool = studentSchool;
     }
 }
