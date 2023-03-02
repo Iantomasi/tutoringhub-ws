@@ -4,9 +4,11 @@ import com.iantomasi.tutoringhubws.tutormanagementsubdomain.datalayer.TutorRepos
 import com.iantomasi.tutoringhubws.tutormanagementsubdomain.datamapperlayer.TutorRequestMapper;
 import com.iantomasi.tutoringhubws.tutormanagementsubdomain.datamapperlayer.TutorResponseMapper;
 import com.iantomasi.tutoringhubws.tutormanagementsubdomain.presentationlayer.TutorResponseModel;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TutorServiceImpl implements TutorService{
 
     private TutorRepository tutorRepository;

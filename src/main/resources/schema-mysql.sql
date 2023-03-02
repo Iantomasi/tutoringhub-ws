@@ -18,6 +18,6 @@ create table if not exists tutors(
     tutor_email VARCHAR(50),
     specialty VARCHAR(50),
     experience VARCHAR(50)
-    );
+);
 
 
