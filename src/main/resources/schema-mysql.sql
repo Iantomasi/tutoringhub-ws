@@ -23,8 +23,8 @@ create table if not exists tutors(
 
 create table if not exists lessons(
 
-      id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      lesson_id VARCHAR(36),
+                                        id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                                        lesson_id VARCHAR(36),
       lesson_subject VARCHAR(50),
       lesson_date VARCHAR(50),
       lesson_duration VARCHAR(50),
@@ -32,5 +32,16 @@ create table if not exists lessons(
       city VARCHAR(50),
       postal_code VARCHAR(9)
 );
+
+create table if not exists schedules(
+
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+    schedule_id VARCHAR(36),
+    schedule_day VARCHAR(50),
+    lesson_id VARCHAR (36),
+    tutor_id VARCHAR(36),
+    student_id VARCHAR (36)
+);
+
 
 

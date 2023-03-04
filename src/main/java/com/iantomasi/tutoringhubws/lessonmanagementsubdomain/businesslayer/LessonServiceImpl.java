@@ -7,9 +7,11 @@ import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.Les
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.LessonResponseMapper;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer.LessonRequestModel;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer.LessonResponseModel;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LessonServiceImpl implements LessonService{
 
 
