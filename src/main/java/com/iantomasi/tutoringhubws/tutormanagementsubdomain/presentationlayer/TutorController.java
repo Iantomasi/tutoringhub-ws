@@ -2,10 +2,7 @@ package com.iantomasi.tutoringhubws.tutormanagementsubdomain.presentationlayer;
 
 import com.iantomasi.tutoringhubws.studentmanagementsubdomain.presentationlayer.StudentResponseModel;
 import com.iantomasi.tutoringhubws.tutormanagementsubdomain.businesslayer.TutorService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,25 @@ public class TutorController {
     public TutorResponseModel getTutorByTutorId(@PathVariable String tutorId){
         return tutorService.getTutorByTutorId(tutorId);
     }
+
+    @PostMapping
+    public TutorResponseModel addTutor(@RequestBody TutorRequestModel tutorRequestModel){
+        return tutorService.addTutor(tutorRequestModel);
+    }
+
+
+    @PutMapping("/{tutorId}")
+    public TutorResponseModel updateTutor(@RequestBody TutorRequestModel tutorRequestModel, @PathVariable String tutorId){
+        return tutorService.updateTutor(tutorRequestModel, tutorId);
+    }
+
+    @DeleteMapping("/{tutorId}")
+    public void removeTutor(@PathVariable String tutorId){
+        tutorService.removeTutor(tutorId);
+    }
+
+
+
 
 
 
