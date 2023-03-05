@@ -1,6 +1,7 @@
 package com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer;
 
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.businesslayer.LessonService;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.presentationlayer.StudentResponseModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,6 +45,14 @@ public class LessonController {
     LessonStudentResponseModel getLessonStudents(@PathVariable String lessonId){
         return lessonService.getLessonStudents(lessonId);
     }
+
+
+    @GetMapping("/{lessonId}/students/{studentId}")
+    StudentResponseModel getStudentInLesson(@PathVariable String lessonId, @PathVariable String studentId){
+        return lessonService.getStudentInLessonByStudentIdentifier_StudentId(lessonId, studentId);
+    }
+
+
 
 
 

@@ -25,7 +25,6 @@ public class StudentController {
 
     @PostMapping("/{lessonId}")
     public StudentResponseModel addStudent(@RequestBody StudentRequestModel studentRequestModel, @PathVariable String lessonId){
-
         return studentService.addStudent(studentRequestModel, lessonId);
     }
 

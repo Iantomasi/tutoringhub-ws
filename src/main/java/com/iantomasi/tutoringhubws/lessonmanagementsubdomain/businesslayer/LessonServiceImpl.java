@@ -115,14 +115,20 @@ public class LessonServiceImpl implements LessonService{
         return lessonStudentResponseMapper.entitiesToResponseModel(lesson, studentResponseModels);
     }
 
+    @Override
+    public StudentResponseModel getStudentInLessonByStudentIdentifier_StudentId(String lessonId, String studentId) {
 
+    if(!lessonRepository.existsLessonByLessonIdentifier_LessonId(lessonId)){
+        return null;
+    }
 
+    Student foundStudent = studentRepository.findByLessonIdentifier_LessonIdAndStudentIdentifier_StudentId(lessonId, studentId);
 
-
-
-
-
-
+    if(foundStudent == null){
+        return null;
+    }
+    return studentResponseMapper.entityToResponseModel(foundStudent);
+    }
 
 
 }

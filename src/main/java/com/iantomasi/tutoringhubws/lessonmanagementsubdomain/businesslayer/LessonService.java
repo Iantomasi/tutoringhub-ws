@@ -20,7 +20,7 @@ public interface LessonService {
 
 
     LessonStudentResponseModel getLessonStudents(String lessonId);
-    //List<StudentResponseModel> getStudentsInLessonByLessonIdentifier_LessonId(String lessonId);
+    StudentResponseModel getStudentInLessonByStudentIdentifier_StudentId(String lessonId, String studentId);
 
 
 
@@ -32,6 +32,7 @@ public interface LessonService {
 //getStudentInLessonByStudentId
 //updateStudentInLesson
 //removeStudentInLesson
+
 
 //getTutorsInLesson
 //getTutorInLessonByTutorId
