@@ -10,6 +10,8 @@ import lombok.Value;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class StudentRequestModel {
 
+    private String studentId;
+    private String inventoryId;
     private String studentName;
     private String studentAge;
     private String studentEmail;

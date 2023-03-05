@@ -11,6 +11,7 @@ import lombok.Value;
 public class StudentResponseModel {
 
     private String studentId;
+    private String lessonId;
     private String studentName;
     private String studentAge;
     private String studentEmail;

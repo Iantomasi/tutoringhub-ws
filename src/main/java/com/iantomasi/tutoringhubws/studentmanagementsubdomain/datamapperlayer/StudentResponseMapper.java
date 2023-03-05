@@ -11,6 +11,7 @@ import java.util.List;
 public interface StudentResponseMapper {
 
     @Mapping(expression = "java(student.getStudentIdentifier().getStudentId())", target = "studentId")
+    @Mapping(expression = "java(student.getLessonIdentifier().getLessonId())", target = "lessonId")
     StudentResponseModel entityToResponseModel(Student student);
     List<StudentResponseModel> entityListToResponseModelList(List<Student> students);
 

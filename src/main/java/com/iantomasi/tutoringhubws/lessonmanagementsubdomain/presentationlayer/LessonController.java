@@ -38,4 +38,13 @@ public class LessonController {
         lessonService.removeLesson(lessonId);
     }
 
+
+
+    @GetMapping("/{lessonId}/students")
+    LessonStudentResponseModel getLessonStudents(@PathVariable String lessonId){
+        return lessonService.getLessonStudents(lessonId);
+    }
+
+
+
 }

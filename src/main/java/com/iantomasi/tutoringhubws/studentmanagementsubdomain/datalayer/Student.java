@@ -1,5 +1,6 @@
 package com.iantomasi.tutoringhubws.studentmanagementsubdomain.datalayer;
 
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datalayer.LessonIdentifier;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,9 @@ public class Student {
 
     @Embedded
     private StudentIdentifier studentIdentifier;
+
+    @Embedded
+    private LessonIdentifier lessonIdentifier;
 
 
     private String studentName;
@@ -32,4 +36,10 @@ public class Student {
         this.studentEmail = studentEmail;
         this.studentSchool = studentSchool;
     }
+
+
+
+
+
+
 }

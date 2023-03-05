@@ -9,8 +9,9 @@ public interface StudentService {
 
     List<StudentResponseModel> getStudents();
     StudentResponseModel getStudentByStudentId(String studentId);
-    StudentResponseModel addStudent(StudentRequestModel studentRequestModel);
-    StudentResponseModel updateStudent(StudentRequestModel studentRequestModel, String studentId);
+    //StudentResponseModel updateStudent(StudentRequestModel studentRequestModel, String studentId);
+
+    StudentResponseModel addStudent(StudentRequestModel studentRequestModel, String lessonId);
     void removeStudent(String studentId);
 
 }

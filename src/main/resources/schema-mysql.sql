@@ -3,6 +3,7 @@ USE `tutoringhub-db`;
 create table if not exists students(
                                         id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                         student_id VARCHAR(36),
+                                        lesson_id VARCHAR(36),
     student_name VARCHAR (50),
     student_age VARCHAR(50),
     student_email VARCHAR(50),
@@ -13,6 +14,7 @@ create table if not exists students(
 create table if not exists tutors(
                                        id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
                                        tutor_id VARCHAR(36),
+                                       lesson_id VARCHAR(36),
     tutor_name VARCHAR (50),
     tutor_age VARCHAR(50),
     tutor_email VARCHAR(50),
@@ -32,16 +34,3 @@ create table if not exists lessons(
       city VARCHAR(50),
       postal_code VARCHAR(9)
 );
-
-create table if not exists schedules(
-
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-    schedule_id VARCHAR(36),
-    schedule_day VARCHAR(50),
-    lesson_id VARCHAR (36),
-    tutor_id VARCHAR(36),
-    student_id VARCHAR (36)
-);
-
-
-

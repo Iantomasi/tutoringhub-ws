@@ -5,8 +5,15 @@ import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datalayer.Lesson;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datalayer.LessonRepository;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.LessonRequestMapper;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.LessonResponseMapper;
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.LessonStudentResponseMapper;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer.LessonRequestModel;
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer.LessonResponseModel;
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer.LessonStudentResponseModel;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datalayer.Student;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datalayer.StudentRepository;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datamapperlayer.StudentRequestMapper;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datamapperlayer.StudentResponseMapper;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.presentationlayer.StudentResponseModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +26,20 @@ public class LessonServiceImpl implements LessonService{
     private LessonResponseMapper lessonResponseMapper;
     private LessonRequestMapper lessonRequestMapper;
 
-    public LessonServiceImpl(LessonRepository lessonRepository, LessonResponseMapper lessonResponseMapper, LessonRequestMapper lessonRequestMapper) {
+    private StudentRepository studentRepository;
+    private StudentResponseMapper studentResponseMapper;
+    private StudentRequestMapper studentRequestMapper;
+
+    private LessonStudentResponseMapper lessonStudentResponseMapper;
+
+    public LessonServiceImpl(LessonRepository lessonRepository, LessonResponseMapper lessonResponseMapper, LessonRequestMapper lessonRequestMapper, StudentRepository studentRepository, StudentResponseMapper studentResponseMapper, StudentRequestMapper studentRequestMapper, LessonStudentResponseMapper lessonStudentResponseMapper) {
         this.lessonRepository = lessonRepository;
         this.lessonResponseMapper = lessonResponseMapper;
         this.lessonRequestMapper = lessonRequestMapper;
+        this.studentRepository = studentRepository;
+        this.studentResponseMapper = studentResponseMapper;
+        this.studentRequestMapper = studentRequestMapper;
+        this.lessonStudentResponseMapper = lessonStudentResponseMapper;
     }
 
     @Override
@@ -77,4 +94,35 @@ public class LessonServiceImpl implements LessonService{
         }
         lessonRepository.delete(existingLesson);
     }
+
+
+    //students
+
+    @Override
+    public LessonStudentResponseModel getLessonStudents(String lessonId) {
+
+        //get lesson
+
+        Lesson lesson = lessonRepository.findLessonByLessonIdentifier_LessonId(lessonId);
+
+        if(lesson == null){
+            return null;
+        }
+
+        List<Student> students = studentRepository.findAllStudentsByLessonIdentifier_LessonId(lessonId);
+        List<StudentResponseModel> studentResponseModels = studentResponseMapper.entityListToResponseModelList(students);
+
+        return lessonStudentResponseMapper.entitiesToResponseModel(lesson, studentResponseModels);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -1,6 +1,11 @@
 package com.iantomasi.tutoringhubws.studentmanagementsubdomain.businesslayer;
 
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datalayer.Lesson;
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datalayer.LessonRepository;
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.LessonRequestMapper;
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datamapperlayer.LessonResponseMapper;
 import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datalayer.Student;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datalayer.StudentIdentifier;
 import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datalayer.StudentRepository;
 import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datamapperlayer.StudentRequestMapper;
 import com.iantomasi.tutoringhubws.studentmanagementsubdomain.datamapperlayer.StudentResponseMapper;
@@ -16,11 +21,17 @@ public class StudentServiceImpl implements StudentService{
     private StudentRepository studentRepository;
     private StudentResponseMapper studentResponseMapper;
     private StudentRequestMapper studentRequestMapper;
+    private LessonRepository lessonRepository;
+    private LessonRequestMapper lessonRequestMapper;
+    private LessonResponseMapper lessonResponseMapper;
 
-    public StudentServiceImpl(StudentRepository studentRepository, StudentResponseMapper studentResponseMapper, StudentRequestMapper studentRequestMapper) {
+    public StudentServiceImpl(StudentRepository studentRepository, StudentResponseMapper studentResponseMapper, StudentRequestMapper studentRequestMapper, LessonRepository lessonRepository, LessonRequestMapper lessonRequestMapper, LessonResponseMapper lessonResponseMapper) {
         this.studentRepository = studentRepository;
         this.studentResponseMapper = studentResponseMapper;
         this.studentRequestMapper = studentRequestMapper;
+        this.lessonRepository = lessonRepository;
+        this.lessonRequestMapper = lessonRequestMapper;
+        this.lessonResponseMapper = lessonResponseMapper;
     }
 
     @Override
@@ -34,12 +45,21 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public StudentResponseModel addStudent(StudentRequestModel studentRequestModel) {
+    public StudentResponseModel addStudent(StudentRequestModel studentRequestModel, String lessonId) {
+        Lesson lesson = lessonRepository.findLessonByLessonIdentifier_LessonId(lessonId);
 
-        Student  student = studentRequestMapper.requestModelToEntity(studentRequestModel);
-        return studentResponseMapper.entityToResponseModel(studentRepository.save(student));
+        if(lesson == null){
+            return null;
+        }
+
+        StudentIdentifier studentIdentifier = new StudentIdentifier(studentRequestModel.getStudentId());
+
+
+        Student student = studentRequestMapper.requestModelToEntity(studentRequestModel, studentIdentifier, lesson.getLessonIdentifier());
+        Student saved = studentRepository.save(student);
+        return studentResponseMapper.entityToResponseModel(saved);
     }
-
+/*
     @Override
     public StudentResponseModel updateStudent(StudentRequestModel studentRequestModel, String studentId) {
 
@@ -53,6 +73,8 @@ public class StudentServiceImpl implements StudentService{
         student.setStudentIdentifier(existingStudent.getStudentIdentifier());
         return studentResponseMapper.entityToResponseModel(studentRepository.save(student));
     }
+
+ */
 
     @Override
     public void removeStudent(String studentId) {

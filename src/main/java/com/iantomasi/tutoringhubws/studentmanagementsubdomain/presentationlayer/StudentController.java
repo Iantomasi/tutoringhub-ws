@@ -23,15 +23,19 @@ public class StudentController {
         return studentService.getStudentByStudentId(studentId);
     }
 
-    @PostMapping()
-    public StudentResponseModel addStudent(@RequestBody StudentRequestModel studentRequestModel){
-        return studentService.addStudent(studentRequestModel);
+    @PostMapping("/{lessonId}")
+    public StudentResponseModel addStudent(@RequestBody StudentRequestModel studentRequestModel, @PathVariable String lessonId){
+
+        return studentService.addStudent(studentRequestModel, lessonId);
     }
 
+    /*
     @PutMapping("/{studentId}")
     public StudentResponseModel updateStudent(@RequestBody StudentRequestModel studentRequestModel, @PathVariable String studentId){
         return studentService.updateStudent(studentRequestModel, studentId);
     }
+
+     */
 
     @DeleteMapping("/{studentId}")
     void removeStudent(@PathVariable String studentId){
