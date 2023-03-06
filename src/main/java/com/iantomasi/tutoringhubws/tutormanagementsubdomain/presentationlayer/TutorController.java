@@ -22,9 +22,9 @@ public class TutorController {
         return tutorService.getTutorByTutorId(tutorId);
     }
 
-    @PostMapping
-    public TutorResponseModel addTutor(@RequestBody TutorRequestModel tutorRequestModel){
-        return tutorService.addTutor(tutorRequestModel);
+    @PostMapping("/{lessonId}")
+    public TutorResponseModel addTutor(@RequestBody TutorRequestModel tutorRequestModel, @PathVariable String lessonId){
+        return tutorService.addTutor(tutorRequestModel, lessonId);
     }
 
 
@@ -37,11 +37,4 @@ public class TutorController {
     public void removeTutor(@PathVariable String tutorId){
         tutorService.removeTutor(tutorId);
     }
-
-
-
-
-
-
-
 }

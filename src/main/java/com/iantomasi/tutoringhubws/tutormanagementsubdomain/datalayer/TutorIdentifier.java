@@ -8,7 +8,10 @@ import java.util.UUID;
 public class TutorIdentifier {
 
     private String tutorId;
-    TutorIdentifier(){ this.tutorId = UUID.randomUUID().toString(); }
+
+    TutorIdentifier(){}
+
+    public TutorIdentifier(String tutorId){ this.tutorId = tutorId; }
 
     public String getTutorId(){ return tutorId; }
 

@@ -1,7 +1,10 @@
 package com.iantomasi.tutoringhubws.lessonmanagementsubdomain.presentationlayer;
 
 import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.businesslayer.LessonService;
+import com.iantomasi.tutoringhubws.studentmanagementsubdomain.presentationlayer.StudentRequestModel;
 import com.iantomasi.tutoringhubws.studentmanagementsubdomain.presentationlayer.StudentResponseModel;
+import com.iantomasi.tutoringhubws.tutormanagementsubdomain.presentationlayer.TutorRequestModel;
+import com.iantomasi.tutoringhubws.tutormanagementsubdomain.presentationlayer.TutorResponseModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,6 +44,7 @@ public class LessonController {
 
 
 
+    //students
     @GetMapping("/{lessonId}/students")
     LessonStudentResponseModel getLessonStudents(@PathVariable String lessonId){
         return lessonService.getLessonStudents(lessonId);
@@ -52,6 +56,53 @@ public class LessonController {
         return lessonService.getStudentInLessonByStudentIdentifier_StudentId(lessonId, studentId);
     }
 
+
+    @PostMapping("/{lessonId}/students")
+    StudentResponseModel addStudentToLesson(@RequestBody StudentRequestModel studentRequestModel, @PathVariable String lessonId){
+        return lessonService.addStudentToLesson(studentRequestModel, lessonId);
+    }
+
+
+    @PutMapping("/{lessonId}/students/{studentId}")
+    public StudentResponseModel updateStudentInLesson(@RequestBody StudentRequestModel studentRequestModel, @PathVariable String lessonId, @PathVariable String studentId){
+        return lessonService.updateStudentInLesson(studentRequestModel, lessonId, studentId);
+    }
+
+    @DeleteMapping("{lessonId}/students/{studentId}")
+    public void removeStudentFromLesson(@PathVariable String lessonId, @PathVariable String studentId){
+        lessonService.removeStudentFromLesson(lessonId, studentId);
+    }
+
+    //tutors
+
+     @GetMapping("/{lessonId}/tutors")
+    LessonTutorResponseModel getLessonTutors(@PathVariable String lessonId){
+        return lessonService.getLessonTutors(lessonId);
+    }
+
+
+
+    @GetMapping("/{lessonId}/tutors/{tutorId}")
+    TutorResponseModel getTutorInLesson(@PathVariable String lessonId, @PathVariable String tutorId){
+        return lessonService.getTutorInLessonByTutorIdentifier_TutorId(lessonId, tutorId);
+    }
+
+
+    @PostMapping("/{lessonId}/tutors")
+    TutorResponseModel addTutorToLesson(@RequestBody TutorRequestModel tutorRequestModel, @PathVariable String lessonId){
+        return lessonService.addTutorToLesson(tutorRequestModel, lessonId);
+    }
+
+
+    @PutMapping("/{lessonId}/tutors/{tutorId}")
+    public TutorResponseModel updateTutorInLesson(@RequestBody TutorRequestModel tutorRequestModel, @PathVariable String lessonId, @PathVariable String tutorId){
+        return lessonService.updateTutorInLesson(tutorRequestModel, lessonId, tutorId);
+    }
+
+    @DeleteMapping("{lessonId}/tutors/{tutorId}")
+    public void removeTutorFromLesson(@PathVariable String lessonId, @PathVariable String tutorId){
+        lessonService.removeTutorFromLesson(lessonId, tutorId);
+    }
 
 
 

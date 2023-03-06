@@ -15,6 +15,5 @@ public interface StudentResponseMapper {
     StudentResponseModel entityToResponseModel(Student student);
     List<StudentResponseModel> entityListToResponseModelList(List<Student> students);
 
-
 }
 

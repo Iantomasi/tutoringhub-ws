@@ -1,5 +1,6 @@
 package com.iantomasi.tutoringhubws.tutormanagementsubdomain.datalayer;
 
+import com.iantomasi.tutoringhubws.lessonmanagementsubdomain.datalayer.LessonIdentifier;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +15,9 @@ public class Tutor {
 
     @Embedded
     private TutorIdentifier tutorIdentifier;
+
+    @Embedded
+    private LessonIdentifier lessonIdentifier;
 
     private String tutorName;
     private String tutorAge;

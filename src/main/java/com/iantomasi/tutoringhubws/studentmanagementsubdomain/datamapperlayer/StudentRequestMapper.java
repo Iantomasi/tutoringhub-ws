@@ -15,6 +15,7 @@ public interface StudentRequestMapper {
             @Mapping(target = "id", ignore = true),
             @Mapping(expression = "java(studentIdentifier)", target = "studentIdentifier"),
             @Mapping(expression = "java(lessonIdentifier)", target = "lessonIdentifier")
-            })
+    })
     Student requestModelToEntity(StudentRequestModel studentRequestModel, StudentIdentifier studentIdentifier, LessonIdentifier lessonIdentifier);
+
 }

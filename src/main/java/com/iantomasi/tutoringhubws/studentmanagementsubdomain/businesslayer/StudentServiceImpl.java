@@ -22,16 +22,12 @@ public class StudentServiceImpl implements StudentService{
     private StudentResponseMapper studentResponseMapper;
     private StudentRequestMapper studentRequestMapper;
     private LessonRepository lessonRepository;
-    private LessonRequestMapper lessonRequestMapper;
-    private LessonResponseMapper lessonResponseMapper;
 
-    public StudentServiceImpl(StudentRepository studentRepository, StudentResponseMapper studentResponseMapper, StudentRequestMapper studentRequestMapper, LessonRepository lessonRepository, LessonRequestMapper lessonRequestMapper, LessonResponseMapper lessonResponseMapper) {
+    public StudentServiceImpl(StudentRepository studentRepository, StudentResponseMapper studentResponseMapper, StudentRequestMapper studentRequestMapper, LessonRepository lessonRepository) {
         this.studentRepository = studentRepository;
         this.studentResponseMapper = studentResponseMapper;
         this.studentRequestMapper = studentRequestMapper;
         this.lessonRepository = lessonRepository;
-        this.lessonRequestMapper = lessonRequestMapper;
-        this.lessonResponseMapper = lessonResponseMapper;
     }
 
     @Override
@@ -59,26 +55,23 @@ public class StudentServiceImpl implements StudentService{
         Student saved = studentRepository.save(student);
         return studentResponseMapper.entityToResponseModel(saved);
     }
-/*
+
     @Override
-    public StudentResponseModel updateStudent(StudentRequestModel studentRequestModel, String studentId) {
+    public StudentResponseModel updateStudent(StudentRequestModel studentRequestModel, String studentId){
 
         Student existingStudent = studentRepository.findStudentByStudentIdentifier_StudentId(studentId);
         if(existingStudent == null){
             return null;
         }
 
-        Student student = studentRequestMapper.requestModelToEntity(studentRequestModel);
+        Student student = studentRequestMapper.requestModelToEntity(studentRequestModel, existingStudent.getStudentIdentifier(), existingStudent.getLessonIdentifier());
         student.setId(existingStudent.getId());
-        student.setStudentIdentifier(existingStudent.getStudentIdentifier());
         return studentResponseMapper.entityToResponseModel(studentRepository.save(student));
     }
 
- */
 
     @Override
     public void removeStudent(String studentId) {
-
         Student existingStudent = studentRepository.findStudentByStudentIdentifier_StudentId(studentId);
         if(existingStudent == null){
             return;

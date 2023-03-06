@@ -10,7 +10,7 @@ public interface TutorService {
 
     List<TutorResponseModel> getTutors();
     TutorResponseModel getTutorByTutorId(String tutorId);
-    TutorResponseModel addTutor(TutorRequestModel tutorRequestModel);
+    TutorResponseModel addTutor(TutorRequestModel tutorRequestModel, String lessonId);
     TutorResponseModel updateTutor(TutorRequestModel tutorRequestModel, String tutorId);
     void removeTutor(String tutorId);
 }

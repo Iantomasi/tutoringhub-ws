@@ -28,20 +28,15 @@ public class StudentController {
         return studentService.addStudent(studentRequestModel, lessonId);
     }
 
-    /*
+
     @PutMapping("/{studentId}")
     public StudentResponseModel updateStudent(@RequestBody StudentRequestModel studentRequestModel, @PathVariable String studentId){
         return studentService.updateStudent(studentRequestModel, studentId);
     }
 
-     */
-
     @DeleteMapping("/{studentId}")
     void removeStudent(@PathVariable String studentId){
         studentService.removeStudent(studentId);
     }
-
-
-
 
 }
